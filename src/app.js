@@ -4,6 +4,7 @@ require('dotenv').config();
 fastify.register(require('@fastify/cors'), {
 // origin: ['http://localhost:4200'],
 origin: true,
+credentials: true,
 methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
 allowedHeaders: ['Content-Type', 'Authorization']
 });
@@ -15,5 +16,6 @@ fastify.register(require('./plugins/auth'));
 fastify.register(require('./routes/gateway.routes'));
 // El proxy va al final para asegurar que los decoradores de auth ya existan
 fastify.register(require('./plugins/proxy'));
+fastify.register(require('./plugins/metrics')); // Métricas para capturar información de cada petición
 
 module.exports = fastify;

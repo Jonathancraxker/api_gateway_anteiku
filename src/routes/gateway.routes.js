@@ -13,5 +13,11 @@ async function gatewayRoutes(fastify, options) {
     };
   });
 }
+// http://localhost:3000/debug-error para probar el error_stack en la BD
+async function gatewayRoutes(fastify, opts) {
+    fastify.get('/debug-error', async (request, reply) => {
+        throw new Error("Error de prueba para gateway_logs");
+    });
+};
 
 module.exports = gatewayRoutes;
