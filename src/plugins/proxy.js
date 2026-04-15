@@ -27,7 +27,6 @@ async function proxyPlugin(fastify, opts) {
     prefix: '/groups',
     rewritePrefix: '/anteiku/groups',
     preHandler: [
-      fastify.verifyPermission('group:view'),
       async (request, reply) => {
         await request.jwtVerify();
       }
